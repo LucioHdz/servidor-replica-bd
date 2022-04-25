@@ -45,8 +45,8 @@ function obtenerDatos(con, callback) {
     })
 }
 
-function subirDatos(con,nombre,fecha, callback) {
-    con.query(`INSERT languaje VALUES language('${nombre}','${fecha}')`, (err,response) => {
+function subirDatos(con,nombre, callback) {
+    con.query(`INSERT language(name,last_update) VALUES ('${nombre}',NOW())`, (err,response) => {
         if (err) throw err;
         callback(response);
     })
@@ -58,12 +58,14 @@ function subirDatos(con,nombre,fecha, callback) {
 
 //Get se usa para obtener los datos en e cliente
 app.get('/', (req, res) => {
+    console.log('hola')
     obtenerDatos(conexion, (response) => res.json(response));
 })
 
 
 //Ingresamos datos a la API
-app.post('/:id',(req,res) =>{
+app.post('/',(req,res) =>{
     const datos = req.body
-    subirDatos(conexion,datos.nombre,datos.fecha,(response) => res.json(response));
+    console.log(datos)
+    subirDatos(conexion,datos.nombre,(response) => res.json(response));
 })
