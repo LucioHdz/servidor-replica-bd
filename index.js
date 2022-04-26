@@ -12,7 +12,6 @@ app.listen(5000, () => console.log('http://localhost:5000'));
 
 
 app.get('/', (req, res) => {
-    console.log('hola')
     obtenerDatos(conexion, (response) => res.json(response));
 })
 
