@@ -1,14 +1,14 @@
 // exportamos las librerias para el servidor
 const express = require('express');
 const cors = require('cors');
-const { subirDatos, obtenerDatos } = require('./database.config');
+const { subirDatos, obtenerDatos, conexion } = require('./database.config');
 
 const app = express();
 
 app.use(express.json())
 app.use(cors());
 
-app.listen(5000, () => console.log('http://localhost:5000'));
+app.listen(5000, () => console.log(''));
 
 
 app.get('/', (req, res) => {
